@@ -30,30 +30,93 @@ const navItems = [
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+  class="fixed top-0 z-10 w-full mx-auto mt-2 px-4"
 >
-  <nav
-    class="flex px-3 text-sm font-bold rounded-full justify-center items-center gap-1"
-    style="font-family: var(--font-body); color: var(--color-text-secondary)"
-  >
-    {
-      navItems.map((link) => (
-        <a
-          class="nav-link relative block px-3 py-2 transition-all hover:scale-105 active:scale-95"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))
-    }
-  </nav>
+  <div class="flex items-center justify-between md:justify-center w-full max-w-7xl mx-auto">
+    <!-- Desktop Navigation -->
+    <nav
+      id="desktop-nav"
+      class="hidden md:flex px-3 text-sm font-bold rounded-full justify-center items-center gap-1"
+      style="font-family: var(--font-body); color: var(--color-text-secondary)"
+    >
+      {
+        navItems.map((link) => (
+          <a
+            class="nav-link relative block px-3 py-2 transition-all hover:scale-105 active:scale-95"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Mobile: Logo/Name (optional) -->
+    <div class="md:hidden">
+      <span class="text-lg font-bold" style="color: var(--color-text); font-family: var(--font-display)">AC</span>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex items-center justify-center p-3 rounded-full transition-all hover:scale-105 active:scale-95"
+      style="background-color: var(--color-bg-elevated); border: 1px solid var(--color-border);"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon" class="size-6" style="color: var(--color-text)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="size-6 hidden" style="color: var(--color-text)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 md:hidden hidden"
+  style="background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px);"
+>
+  <div
+    class="mobile-menu-content fixed right-0 top-0 bottom-0 w-64 transform translate-x-full transition-transform duration-300"
+    style="background-color: var(--color-bg-elevated); border-left: 1px solid var(--color-border);"
+  >
+    <!-- Close button -->
+    <button
+      id="menu-close"
+      class="absolute top-4 right-4 p-2 transition-all hover:scale-105 active:scale-95"
+      aria-label="Close menu"
+    >
+      <svg class="size-6" style="color: var(--color-text)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Mobile Navigation Links -->
+    <nav class="flex flex-col gap-1 mt-20 px-6" style="font-family: var(--font-body)">
+      {
+        navItems.map((link) => (
+          <a
+            class="mobile-nav-link block px-4 py-3 rounded-lg transition-all hover:scale-105 active:scale-95"
+            style="color: var(--color-text-secondary)"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</div>
 
 <script>
   document.addEventListener("astro:page-load", () => {
     const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll<HTMLElement>("header nav a")
+    const navItems = document.querySelectorAll<HTMLElement>("header nav a, #mobile-menu nav a")
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
@@ -81,6 +144,44 @@ const navItems = [
       observer.observe(section)
     })
 
+    // Mobile menu toggle
+    const menuToggle = document.getElementById("menu-toggle")
+    const menuClose = document.getElementById("menu-close")
+    const mobileMenu = document.getElementById("mobile-menu")
+    const mobileMenuContent = mobileMenu?.querySelector(".mobile-menu-content")
+    const menuIcon = document.getElementById("menu-icon")
+    const closeIcon = document.getElementById("close-icon")
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link")
+
+    const openMenu = () => {
+      mobileMenu?.classList.remove("hidden")
+      setTimeout(() => {
+        mobileMenuContent?.classList.remove("translate-x-full")
+      }, 10)
+      document.body.style.overflow = "hidden"
+    }
+
+    const closeMenu = () => {
+      mobileMenuContent?.classList.add("translate-x-full")
+      setTimeout(() => {
+        mobileMenu?.classList.add("hidden")
+      }, 300)
+      document.body.style.overflow = ""
+    }
+
+    menuToggle?.addEventListener("click", openMenu)
+    menuClose?.addEventListener("click", closeMenu)
+    mobileMenu?.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) closeMenu()
+    })
+
+    // Close menu when clicking on a link
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu()
+      })
+    })
+
     // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
@@ -95,11 +196,17 @@ const navItems = [
 </script>
 
 <style>
-  nav {
+  #desktop-nav {
     animation: nav-shadown 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
     background-color: var(--color-bg-elevated);
+  }
+
+  #menu-toggle {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
   }
 
   .nav-link {
@@ -107,6 +214,15 @@ const navItems = [
   }
 
   .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .mobile-nav-link {
+    color: var(--color-text-secondary);
+  }
+
+  .mobile-nav-link:hover {
+    background-color: var(--color-bg);
     color: var(--color-primary);
   }
 
