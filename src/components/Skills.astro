@@ -1,0 +1,121 @@
+---
+// Icons disponibles
+import TailwindIcon from "./icons/Tailwind.astro"
+import CakePHPIcon from "./icons/CakePHP.astro"
+import MySqlIcon from "./icons/MySql.astro"
+import GithubIcon from "./icons/Github.astro"
+import PythonIcon from "./icons/Python.astro"
+import PHPIcon from "./icons/PHP.astro"
+import JavascriptIcon from "./icons/Javascript.astro"
+import HTMLIcon from "./icons/HTML.astro"
+import AstroIcon from "./icons/AstroIcon.astro"
+import DockerIcon from "./icons/Docker.astro"
+import WordpressIcon from "./icons/Wordpress.astro"
+import DatabaseIcon from "./icons/Database.astro"
+import GitIcon from "./icons/Git.astro"
+import ClaudeCodeIcon from "./icons/Claude.astro"
+import DjangoIcon from "./icons/Django.astro"
+import n8nIcon from "./icons/n8n.astro"
+import CSSIcon from "./icons/CSS.astro"
+
+// TODO: Agregar estos iconos faltantes (ver lista abajo)
+
+const SKILLS = [
+	{
+		category: "Frontend",
+		color: "primary",
+		items: [
+			{ name: "Astro", icon: AstroIcon },
+			{ name: "JavaScript", icon: JavascriptIcon },
+			{ name: "HTML5", icon: HTMLIcon },
+			{ name: "CSS3", icon: CSSIcon },
+			{ name: "Tailwind CSS", icon: TailwindIcon },
+		]
+	},
+	{
+		category: "Backend",
+		color: "success",
+		items: [
+			{ name: "Python", icon: PythonIcon },
+			{ name: "Django", icon: DjangoIcon },
+			{ name: "PHP", icon: PHPIcon },
+			{ name: "CakePHP", icon: CakePHPIcon },
+			{ name: "SQL", icon: DatabaseIcon },
+			{ name: "n8n", icon: n8nIcon },
+		]
+	},
+	{
+		category: "IA & Automatización",
+		color: "creative",
+		items: [
+			{ name: "Agentes Autónomos", icon: null },
+			{ name: "WhatsApp Bots", icon: null },
+			{ name: "Automatización", icon: null },
+		]
+	},
+	{
+		category: "Herramientas",
+		color: "energy",
+		items: [
+			{ name: "Git", icon: GitIcon },
+			{ name: "Docker", icon: DockerIcon },
+			{ name: "WordPress", icon: WordpressIcon },
+			{ name: "Claude Code", icon: ClaudeCodeIcon }
+		]
+	},
+];
+
+const colorMap = {
+	primary: "var(--color-primary)",
+	success: "var(--color-accent-success)",
+	creative: "var(--color-accent-creative)",
+	energy: "var(--color-accent-energy)",
+};
+---
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+	{SKILLS.map((skillGroup, groupIndex) => (
+		<div class={`reveal stagger-${groupIndex + 1}`}>
+			<!-- Category Header with Diagonal Accent -->
+			<div class="relative mb-4">
+				<div
+					class="absolute left-0 top-0 bottom-0 w-1 rounded-full"
+					style={`background: ${colorMap[skillGroup.color as keyof typeof colorMap]}`}
+				></div>
+				<h3 class="pl-4 text-lg font-bold" style={`font-family: var(--font-display); color: var(--color-text)`}>
+					{skillGroup.category}
+				</h3>
+			</div>
+
+			<!-- Skills Badges -->
+			<div class="flex flex-wrap gap-2">
+				{skillGroup.items.map((skill) => (
+					<div class="group relative">
+						<div
+							class="absolute inset-0 rounded-lg blur-sm opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+							style={`background: ${colorMap[skillGroup.color as keyof typeof colorMap]}`}
+						></div>
+						<div
+							class="skill-badge relative px-3 py-2 rounded-lg transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-default flex items-center gap-2"
+							style={`background-color: var(--color-bg-elevated); border: 1px solid var(--color-border);`}
+						>
+							{skill.icon && (
+								<skill.icon class="size-5" style={`color: ${colorMap[skillGroup.color as keyof typeof colorMap]}`} />
+							)}
+							<span class="text-sm font-medium" style="color: var(--color-text)">
+								{skill.name}
+							</span>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	))}
+</div>
+
+<style>
+	/* Custom hover effect for skill badges */
+	.group:hover > .relative {
+		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+	}
+</style>

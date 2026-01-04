@@ -1,22 +1,166 @@
+---
+// @ts-ignore - CSS imports
+import "@fontsource-variable/syne"
+// @ts-ignore - CSS imports
+import "@fontsource-variable/manrope"
+// @ts-ignore - CSS imports
+import "@fontsource-variable/jetbrains-mono"
+
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import { ClientRouter } from "astro:transitions"
+import '../styles/global.css'  
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { description, title } = Astro.props
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<ClientRouter />
 	</head>
-	<body>
+	<body class="relative">
+		<!-- Swiss Modern Background -->
+		<div class="fixed inset-0 z-[-2] bg-[--color-bg]">
+			<!-- Geometric gradient accent -->
+			<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)]"></div>
+			<div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(245,158,11,0.05),transparent_50%)]"></div>
+
+			<!-- Subtle grid pattern -->
+			<div class="absolute inset-0 opacity-[0.015] dark:opacity-[0.02]"
+				style="background-image: linear-gradient(var(--color-text) 1px, transparent 1px), linear-gradient(90deg, var(--color-text) 1px, transparent 1px); background-size: 50px 50px;">
+			</div>
+		</div>
+		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	:root {
+		color-scheme: light dark;
+
+		/* Swiss Modern Color System */
+		--color-primary: #3b82f6;
+		--color-primary-light: #60a5fa;
+		--color-primary-dark: #2563eb;
+
+		--color-accent-energy: #f59e0b;
+		--color-accent-success: #10b981;
+		--color-accent-creative: #ec4899;
+
+		--color-text: #1a1a1a;
+		--color-text-secondary: #525252;
+		--color-bg: #fafafa;
+		--color-bg-elevated: #ffffff;
+		--color-border: #e5e5e5;
+
+		/* Typography Scale */
+		--font-display: "Syne Variable", system-ui, sans-serif;
+		--font-body: "Manrope Variable", system-ui, sans-serif;
+		--font-mono: "JetBrains Mono Variable", monospace;
+
+		/* Spacing */
+		--section-gap: 8rem;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--color-text: #fafafa;
+			--color-text-secondary: #a3a3a3;
+			--color-bg: #0a0a0a;
+			--color-bg-elevated: #171717;
+			--color-border: #262626;
+		}
+	}
+
+	html {
+		font-family: var(--font-body);
+		scroll-behavior: smooth;
+		background: var(--color-bg);
+	}
+
 	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+		color: var(--color-text);
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overscroll-behavior: none;
+		line-height: 1.6;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		* {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	/* Typography */
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	/* Scroll Reveal Animation */
+	@keyframes reveal-up {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.reveal {
+		animation: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+	}
+
+	.stagger-1 { animation-delay: 0.1s; }
+	.stagger-2 { animation-delay: 0.2s; }
+	.stagger-3 { animation-delay: 0.3s; }
+	.stagger-4 { animation-delay: 0.4s; }
+	.stagger-5 { animation-delay: 0.5s; }
+
+	#header-nav {
+		animation: blur linear both 0.5s;
+		animation-timeline: scroll();
+		animation-range: 0 500px;
+	}
+
+	@keyframes blur {
+		to {
+			backdrop-filter: blur(20px);
+			border-width: 1px;
+			border-color: var(--color-border);
+			padding: 0.25rem 0.75rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			background-color: var(--color-bg-elevated);
+			border-radius: 9999px;
+			box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+		}
 	}
 </style>

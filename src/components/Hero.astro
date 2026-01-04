@@ -1,0 +1,160 @@
+---
+const personalImageAlt = "Alexander Caicedo";
+import GithubIcon from "../components/icons/Github.astro"
+import Badge from "../components/Badge.astro"
+import LinkedInIcon from "../components/icons/LinkedIn.astro"
+import MailIcon from "../components/icons/Mail.astro"
+---
+
+<div class="max-w-4xl">
+	<!-- Header with Image & Badge -->
+	<div class="flex items-center gap-6 mb-8 reveal stagger-1">
+		<div class="relative group">
+			<div
+				class="absolute inset-0 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"
+				style="background: linear-gradient(to bottom right, var(--color-primary), var(--color-accent-energy));"
+			></div>
+			<img
+				class="relative rounded-full size-20 sm:size-24 object-cover shadow-xl"
+				style="ring: 2px solid var(--color-bg-elevated);"
+				src="/alexandercaicedo.jpeg"
+				alt={personalImageAlt}
+			/>
+		</div>
+		<div>
+			<a
+				href="https://www.linkedin.com/in/caicedoalexander/"
+				target="_blank"
+				rel="noopener"
+				class="inline-block transition hover:scale-105 active:scale-95"
+			>
+				<Badge>Disponible para trabajar</Badge>
+			</a>
+			<p class="mt-2 text-sm font-medium" style="color: var(--color-text-secondary)">Buenaventura, Colombia 🇨🇴</p>
+		</div>
+	</div>
+
+	<!-- Bold Typography Hero -->
+	<h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 reveal stagger-2">
+		<span class="block" style="color: var(--color-text)">Hola, soy</span>
+		<span
+			class="block bg-clip-text text-transparent"
+			style="background-image: linear-gradient(to right, var(--color-primary), var(--color-accent-creative), var(--color-accent-energy));"
+		>
+			Alexander Caicedo
+		</span>
+	</h1>
+
+	<p class="text-xl sm:text-2xl max-w-2xl mb-4 reveal stagger-3" style="color: var(--color-text-secondary)">
+		Desarrollador <strong class="font-bold" style="color: var(--color-text)">Full Stack</strong> especializado en crear
+		<strong class="font-bold" style="color: var(--color-accent-success)">soluciones innovadoras</strong> con tecnologías modernas.
+	</p>
+
+	<p class="text-lg max-w-2xl mb-12 reveal stagger-4" style="color: var(--color-text-secondary)">
+		Pionero en integración de IA generativa y agentes autónomos. Experto en desarrollo web, automatización y sistemas empresariales.
+	</p>
+
+	<!-- Prominent CTAs -->
+	<div class="flex flex-wrap gap-4 mb-8 reveal stagger-5">
+		<!-- Primary CTA -->
+		<a
+			href="#proyectos"
+			class="group relative inline-flex items-center gap-2 px-6 py-3 text-white font-bold rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl active:scale-95"
+			style="background-color: var(--color-accent-energy); box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.25);"
+		>
+			<span class="relative z-10">Ver Proyectos</span>
+			<svg class="relative z-10 size-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+			</svg>
+			<div
+				class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+				style="background: linear-gradient(to right, var(--color-accent-energy), #d97706);"
+			></div>
+		</a>
+
+		<!-- Secondary CTA -->
+		<a
+			href="mailto:a.caicedo.dev@gmail.com"
+			class="cta-secondary group inline-flex items-center gap-2 px-6 py-3 font-bold rounded-lg transition-all hover:scale-105 hover:shadow-lg active:scale-95"
+		>
+			<MailIcon class="size-5 transition-colors" />
+			<span>Contactar</span>
+		</a>
+
+		<!-- Tertiary CTA -->
+		<a
+			href="/cv-alexander-caicedo.pdf"
+			download
+			class="cta-tertiary group inline-flex items-center gap-2 px-6 py-3 bg-transparent font-bold rounded-lg transition-all hover:scale-105 hover:shadow-lg active:scale-95"
+		>
+			<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+			</svg>
+			<span>Descargar CV</span>
+		</a>
+	</div>
+
+	<!-- Social Links -->
+	<div class="flex flex-wrap gap-3 reveal stagger-5">
+		<a
+			href="https://www.linkedin.com/in/caicedoalexander/"
+			target="_blank"
+			rel="noopener"
+			class="social-link group inline-flex items-center gap-2 px-4 py-2 text-sm transition-colors"
+		>
+			<LinkedInIcon class="size-5" />
+			<span class="font-medium">LinkedIn</span>
+		</a>
+		<a
+			href="https://github.com/caicedoficial"
+			target="_blank"
+			rel="noopener"
+			class="social-link-github group inline-flex items-center gap-2 px-4 py-2 text-sm transition-colors"
+		>
+			<GithubIcon class="size-5" />
+			<span class="font-medium">GitHub</span>
+		</a>
+	</div>
+</div>
+
+<style>
+	.cta-secondary {
+		background-color: var(--color-bg-elevated);
+		border: 2px solid var(--color-border);
+		color: var(--color-text);
+	}
+
+	.cta-secondary:hover {
+		border-color: var(--color-primary);
+	}
+
+	.cta-secondary:hover :global(svg) {
+		color: var(--color-primary);
+	}
+
+	.cta-tertiary {
+		border: 2px solid var(--color-border);
+		color: var(--color-text-secondary);
+	}
+
+	.cta-tertiary:hover {
+		border-color: var(--color-accent-success);
+		color: var(--color-accent-success);
+	}
+
+	.social-link {
+		color: var(--color-text-secondary);
+	}
+
+	.social-link:hover {
+		color: var(--color-primary);
+	}
+
+	.social-link-github {
+		color: var(--color-text-secondary);
+	}
+
+	.social-link-github:hover {
+		color: var(--color-text);
+	}
+</style>

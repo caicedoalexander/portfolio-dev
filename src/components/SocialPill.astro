@@ -1,0 +1,33 @@
+<a
+  {...Astro.props}
+  target="_blank"
+  rel="noopener noreferrer"
+  role="link"
+  class="social-pill inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all hover:scale-105 active:scale-95 group max-w-fit focus:outline-none"
+>
+  <slot />
+</a>
+
+<style>
+    .social-pill {
+        background-color: var(--color-bg-elevated);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-secondary);
+    }
+
+    .social-pill:hover {
+        background-color: var(--color-bg);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-pill:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    .social-pill:active {
+        transform: scale(0.95);
+    }
+</style>

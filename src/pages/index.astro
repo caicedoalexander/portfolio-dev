@@ -1,11 +1,67 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import BriefcaseIcon from '../components/icons/Briefcase.astro';
+import CodeIcon from '../components/icons/Code.astro';
+import Projects from '../components/Projects.astro';
+import Hero from '../components/Hero.astro';
+import TitleSection from '../components/TitleSection.astro';
+import ProfileCheck from '../components/icons/ProfileCheck.astro';
+import AboutMe from '../components/AboutMe.astro';
+import Skills from '../components/Skills.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Portfolio de Alexander Caicedo - Desarrollador y Programador Web con 15 años de experiencia"
+  description="Contrata a Alexander Caicedo para crear tu aplicación. Desarrollador Web y Creador de Contenido. Especializado en crear aplicaciones únicas."
+>
+	<main class="px-4">
+		<SectionContainer class="py-16 lg:py-36">
+			<Hero />
+			<slot />
+		</SectionContainer>
+
+		<!-- Skills Section -->
+		<SectionContainer id="habilidades" class="py-16">
+			<div class="mb-12 reveal">
+				<h2 class="text-4xl font-bold mb-2" style="font-family: var(--font-display); color: var(--color-text)">
+					Stack Tecnológico
+				</h2>
+				<p class="text-lg" style="color: var(--color-text-secondary)">
+					Herramientas y tecnologías con las que trabajo
+				</p>
+			</div>
+			<Skills />
+		</SectionContainer>
+
+		<div class="space-y-24">
+			<SectionContainer id="experiencia">
+			<TitleSection>
+				<BriefcaseIcon class="size-8" />
+				Experiencia laboral
+			</TitleSection>
+			<Experience />
+			</SectionContainer>
+
+			<SectionContainer id="proyectos">
+			<TitleSection>
+				<CodeIcon class="size-7" />
+				Proyectos
+			</TitleSection>
+			<Projects />
+			</SectionContainer>
+
+			<SectionContainer id="sobre-mi">
+				<TitleSection>
+					<ProfileCheck class="size-8" />
+					Sobre mí
+				</TitleSection>
+				<AboutMe />
+			</SectionContainer>
+		</div>
+	</main>
 </Layout>

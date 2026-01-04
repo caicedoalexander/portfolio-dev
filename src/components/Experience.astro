@@ -1,0 +1,22 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+    {
+        role: 'Auxiliar de Sistemas',
+        company: 'Compañía Operadora Portuaria Cafetera S.A.',
+        period: 'Diciembre 2024 - Presente',
+        description: 'Liderazgo en desarrollo e implementación de sistemas internos: sitio web corporativo (WordPress), plataforma de soporte IT, sistema PQRS, gestión de compras y RRHH. Pionero en integración de IA generativa y agentes autónomos mediante n8n, incluyendo bots de WhatsApp conectados a sistemas internos. Stack: PHP, Python, JavaScript, SQL, n8n.'
+    }
+];
+---
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
+

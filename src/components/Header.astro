@@ -1,0 +1,126 @@
+---
+
+const navItems = [
+  {
+    title: "Habilidades",
+    label: "habilidades",
+    url: "/#habilidades",
+  },
+  {
+    title: "Experiencia",
+    label: "experiencia",
+    url: "/#experiencia",
+  },
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/#proyectos",
+  },
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/#sobre-mi",
+  },
+  {
+    title: "Contacto",
+    label: "contacto",
+    url: "mailto:a.caicedo.dev@gmail.com",
+  },
+]
+---
+
+<header
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
+  <nav
+    class="flex px-3 text-sm font-bold rounded-full justify-center items-center gap-1"
+    style="font-family: var(--font-body); color: var(--color-text-secondary)"
+  >
+    {
+      navItems.map((link) => (
+        <a
+          class="nav-link relative block px-3 py-2 transition-all hover:scale-105 active:scale-95"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section")
+    const navItems = document.querySelectorAll<HTMLElement>("header nav a")
+
+    const callback = (entries: any[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") == entry.target.id) {
+              item.style.color = "var(--color-primary)"
+              item.style.transform = "scale(1.05)"
+            } else {
+              item.style.color = ""
+              item.style.transform = ""
+            }
+          })
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+    })
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+
+    // Cleanup function
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect()
+      } else {
+        sections.forEach((section) => {
+          observer.observe(section)
+        })
+      }
+    }
+  })
+</script>
+
+<style>
+  nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+    background-color: var(--color-bg-elevated);
+  }
+
+  .nav-link {
+    color: var(--color-text-secondary);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  @keyframes nav-shadown {
+    0% {
+      background-color: transparent;
+      box-shadow: none;
+      outline-color: var(--color-border);
+    }
+    to {
+      background-color: var(--color-bg-elevated);
+      box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      backdrop-filter: blur(12px);
+      outline: 1px solid var(--color-border);
+    }
+  }
+</style>
