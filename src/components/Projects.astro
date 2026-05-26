@@ -1,14 +1,18 @@
 ---
 import GitHub from "./icons/Github.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import Link from "./icons/Link.astro"
 import CakePHP from "./icons/CakePHP.astro"
 import Bootstrap from "./icons/Boostrap.astro"
 import MySql from "./icons/MySql.astro"
+import PHP from "./icons/PHP.astro"
+import Wordpress from "./icons/Wordpress.astro"
+import Javascript from "./icons/Javascript.astro"
+import N8n from "./icons/n8n.astro"
+import Docker from "./icons/Docker.astro"
 
 const TAGS = {
   BOOSTRAP: {
-    name: "Bootstrap5",
+    name: "Bootstrap 5",
     color: "#8312FA",
     icon: Bootstrap,
   },
@@ -22,18 +26,58 @@ const TAGS = {
     color: "#4479A1",
     icon: MySql,
   },
+  PHP: {
+    name: "PHP 8.1+",
+    color: "#777BB4",
+    icon: PHP,
+  },
+  WORDPRESS: {
+    name: "WordPress",
+    color: "#21759B",
+    icon: Wordpress,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    color: "#F7DF1E",
+    icon: Javascript,
+  },
+  N8N: {
+    name: "n8n",
+    color: "#EA4B71",
+    icon: N8n,
+  },
+  DOCKER: {
+    name: "Docker",
+    color: "#2496ED",
+    icon: Docker,
+  },
 }
 
 const PROJECTS = [
   {
+    title: "SGI · COPCSA",
+    description:
+      "Sistema interno de gestión administrativa y financiera con pipelines de facturas, anticipos, reintegros y caja menor. RBAC granular, aprobaciones externas con tokens, auditoría field-by-field, integraciones con DIAN, n8n y generación de PDF.",
+    link: 'https://sgi.alexandercaicedo.dev/',
+    image: "/projects/sgi.png",
+    tags: [TAGS.CAKEPHP, TAGS.PHP, TAGS.MYSQL, TAGS.N8N, TAGS.DOCKER],
+  },
+  {
     title: "Mesa de Ayuda",
     description:
-      "Plataforma integral para gestión de PQRS, compras y soporte IT. Implementación de automatización con IA y Bots de Whatsapp para procesos internos y mejora de eficiencia operativa.",
+      "Plataforma corporativa de tickets con ciclo de vida completo, conversión automática de correos a tickets vía Gmail API y notificaciones por WhatsApp (Evolution API). Automatizaciones bidireccionales con n8n para clasificación y orquestación.",
     link: 'https://mesadeayuda.alexandercaicedo.dev/',
-    github: 'https://github.com/caicedoficial/mesa-de-ayuda',
-    image: "/projects/mesa-de-ayuda.webp",
-    tags: [TAGS.CAKEPHP, TAGS.BOOSTRAP, TAGS.MYSQL],
-  }
+    image: "/projects/mesa-de-ayuda.png",
+    tags: [TAGS.CAKEPHP, TAGS.BOOSTRAP, TAGS.MYSQL, TAGS.N8N],
+  },
+  {
+    title: "OpenSEO",
+    description:
+      "Plugin de WordPress open source para SEO asistido por IA. Arquitectura BYO Provider (OpenAI, Anthropic, Gemini, Ollama) y skills editables mediante plantillas de prompt con variables. PSR-4, registro extensible por filtros y pago directo al proveedor.",
+    github: 'https://github.com/openseo-wp/openseo',
+    image: "/projects/openseo.png",
+    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.JAVASCRIPT],
+  },
 ]
 ---
   
