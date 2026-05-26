@@ -8,7 +8,6 @@ import PHP from "./icons/PHP.astro"
 import Wordpress from "./icons/Wordpress.astro"
 import Javascript from "./icons/Javascript.astro"
 import N8n from "./icons/n8n.astro"
-import Docker from "./icons/Docker.astro"
 
 const TAGS = {
   BOOSTRAP: {
@@ -46,21 +45,16 @@ const TAGS = {
     color: "#EA4B71",
     icon: N8n,
   },
-  DOCKER: {
-    name: "Docker",
-    color: "#2496ED",
-    icon: Docker,
-  },
 }
 
 const PROJECTS = [
   {
-    title: "SGI · COPCSA",
+    title: "Sistema de gestión Interna",
     description:
       "Sistema interno de gestión administrativa y financiera con pipelines de facturas, anticipos, reintegros y caja menor. RBAC granular, aprobaciones externas con tokens, auditoría field-by-field, integraciones con DIAN, n8n y generación de PDF.",
     link: 'https://sgi.alexandercaicedo.dev/',
     image: "/projects/sgi.png",
-    tags: [TAGS.CAKEPHP, TAGS.PHP, TAGS.MYSQL, TAGS.N8N, TAGS.DOCKER],
+    tags: [TAGS.CAKEPHP, TAGS.PHP, TAGS.MYSQL, TAGS.N8N],
   },
   {
     title: "Mesa de Ayuda",
