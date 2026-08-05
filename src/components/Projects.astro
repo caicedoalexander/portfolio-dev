@@ -8,6 +8,9 @@ import PHP from "./icons/PHP.astro"
 import Wordpress from "./icons/Wordpress.astro"
 import Javascript from "./icons/Javascript.astro"
 import N8n from "./icons/n8n.astro"
+import TypeScript from "./icons/TypeScript.astro"
+import NodeJs from "./icons/NodeJs.astro"
+import Claude from "./icons/Claude.astro"
 
 const TAGS = {
   BOOSTRAP: {
@@ -45,6 +48,25 @@ const TAGS = {
     color: "#EA4B71",
     icon: N8n,
   },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    color: "#3178C6",
+    icon: TypeScript,
+  },
+  NODEJS: {
+    name: "Node.js",
+    color: "#5FA04E",
+    icon: NodeJs,
+  },
+  CLAUDE_CODE: {
+    name: "Claude Code",
+    color: "#D97757",
+    icon: Claude,
+  },
+  MCP: {
+    name: "MCP",
+    color: "#10B981",
+  },
 }
 
 const PROJECTS = [
@@ -71,6 +93,14 @@ const PROJECTS = [
     github: 'https://github.com/openseo-wp/openseo',
     image: "/projects/openseo.png",
     tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.JAVASCRIPT],
+  },
+  {
+    title: "opencode-delegate",
+    description:
+      "Plugin de Claude Code que delega tareas de subagente a modelos gestionados por OpenCode mediante un servidor MCP, replicando el contrato del Agent tool nativo. Tiers que fijan permisos y aislamiento en git worktree, jobs en background con log en vivo, fallback automático entre modelos y slash commands de seguimiento.",
+    github: 'https://github.com/caicedoalexander/opencode-delegate',
+    image: "/projects/opencode-delegate.png",
+    tags: [TAGS.TYPESCRIPT, TAGS.NODEJS, TAGS.MCP, TAGS.CLAUDE_CODE],
   },
 ]
 ---
