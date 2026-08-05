@@ -73,7 +73,7 @@ const PROJECTS = [
   {
     title: "Sistema de gestión Interna",
     description:
-      "Sistema interno de gestión administrativa y financiera con pipelines de facturas, anticipos, reintegros y caja menor. RBAC granular, aprobaciones externas con tokens, auditoría field-by-field, integraciones con DIAN, n8n y generación de PDF.",
+      "Centraliza la operación administrativa de una empresa: más de 15 personas gestionan facturas, anticipos, caja menor, hojas de vida del personal, permisos y novedades de nómina en un solo lugar. Cada documento recorre un flujo de aprobación según el cargo de quien lo revisa, se puede aprobar desde el correo y queda registro de quién cambió qué y cuándo. Incluye cruce automático de facturas contra la DIAN.",
     link: 'https://sgi.alexandercaicedo.dev/',
     image: "/projects/sgi.png",
     tags: [TAGS.CAKEPHP, TAGS.PHP, TAGS.MYSQL, TAGS.N8N],
@@ -81,7 +81,7 @@ const PROJECTS = [
   {
     title: "Mesa de Ayuda",
     description:
-      "Plataforma corporativa de tickets con ciclo de vida completo, conversión automática de correos a tickets vía Gmail API y notificaciones por WhatsApp (Evolution API). Automatizaciones bidireccionales con n8n para clasificación y orquestación.",
+      "Los correos y mensajes de WhatsApp que llegan a soporte se convierten solos en tickets, con responsable, historial y seguimiento. Nada se queda perdido en una bandeja de entrada: el equipo recibe el aviso por el canal que corresponda y cada cambio queda registrado. Construida para seguir funcionando aunque una integración externa falle.",
     link: 'https://mesadeayuda.alexandercaicedo.dev/',
     image: "/projects/mesa-de-ayuda.png",
     tags: [TAGS.CAKEPHP, TAGS.BOOSTRAP, TAGS.MYSQL, TAGS.N8N],
@@ -97,7 +97,7 @@ const PROJECTS = [
   {
     title: "opencode-delegate",
     description:
-      "Plugin de Claude Code que delega tareas de subagente a modelos gestionados por OpenCode mediante un servidor MCP, replicando el contrato del Agent tool nativo. Tiers que fijan permisos y aislamiento en git worktree, jobs en background con log en vivo, fallback automático entre modelos y slash commands de seguimiento.",
+      "Permite que Claude Code reparta el trabajo repetitivo —buscar entre cientos de archivos, generar código de plantilla, escribir pruebas rutinarias— entre modelos externos, mientras conserva la dirección de la tarea. Cada encargo corre aislado, así que nada toca tu código sin que lo revises antes.",
     github: 'https://github.com/caicedoalexander/opencode-delegate',
     image: "/projects/opencode-delegate.png",
     tags: [TAGS.TYPESCRIPT, TAGS.NODEJS, TAGS.MCP, TAGS.CLAUDE_CODE],
